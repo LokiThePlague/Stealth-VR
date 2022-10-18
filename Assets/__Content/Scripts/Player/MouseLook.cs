@@ -11,6 +11,8 @@ namespace __Content.Scripts.Player
         private float xRotation;
         private Transform playerBody;
 
+        private bool isOn;
+
         private void Start()
         {
             Cursor.lockState = CursorLockMode.Locked;
@@ -18,6 +20,9 @@ namespace __Content.Scripts.Player
 
         private void Update()
         {
+            if (!isOn)
+                return;
+            
             var lookAroundInput = playerInput.actions["LookAround"].ReadValue<Vector2>();
 
             var mouseX = lookAroundInput.x * (playerTurnSpeed * Time.deltaTime);
@@ -36,6 +41,16 @@ namespace __Content.Scripts.Player
             this.playerTurnSpeed = playerTurnSpeed;
             this.playerLookUpSpeed = playerLookUpSpeed;
             this.playerBody = playerBody;
+        }
+
+        public void On()
+        {
+            isOn = true;
+        }
+        
+        public void Off()
+        {
+            isOn = false;
         }
     }
 }

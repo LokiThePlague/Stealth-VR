@@ -20,9 +20,13 @@ namespace __Content.Scripts.Player
         private float groundDistance;
 
         private bool isGrounded;
+        private bool isOn;
 
         private void Update()
         {
+            if (!isOn)
+                return;
+            
             var moveInput = playerInput.actions["Move"].ReadValue<Vector2>();
 
             var moveX = moveInput.x;
@@ -48,6 +52,16 @@ namespace __Content.Scripts.Player
             this.gravity = gravity;
             this.groundDistance = groundDistance;
             this.playerBody = playerBody;
+        }
+        
+        public void On()
+        {
+            isOn = true;
+        }
+        
+        public void Off()
+        {
+            isOn = false;
         }
     }
 }

@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -40,6 +41,15 @@ namespace __Content.Scripts.Player
         {
             playerMovement.Setup(playerInput, controller, playerMoveSpeed, gravity, groundDistance, transform);
             mouseLook.Setup(playerInput, playerTurnSpeed, playerLookUpSpeed, transform);
+
+            StartCoroutine(EnableControlsForFirstTime());
+        }
+
+        private IEnumerator EnableControlsForFirstTime()
+        {
+            yield return new WaitForSeconds(1f); // New input system has a bug that provides negatives values on y axis at firsts frames, we avoid it waiting one second on start
+            playerMovement.On();
+            mouseLook.On();
         }
     }
 }
