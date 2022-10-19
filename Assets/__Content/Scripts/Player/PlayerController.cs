@@ -7,24 +7,29 @@ namespace __Content.Scripts.Player
 {
     public class PlayerController : MonoBehaviour
     {
+        [Header("Movement")]
         [SerializeField]
         private float playerMoveSpeed = 7f;
-        
+
         [SerializeField]
         private float playerTurnSpeed = 80f;
-        
+
         [SerializeField]
         private float playerLookUpSpeed = 80f;
-        
+
+        [Space(10)]
+        [Header("Gravity")]
         [SerializeField]
         private float gravity = -9.81f;
-        
+
         [SerializeField]
         private float groundDistance = .001f;
-        
+
+        [Space(10)]
+        [Header("References")]
         [SerializeField]
         private PlayerMovement playerMovement;
-        
+
         [SerializeField]
         private MouseLook mouseLook;
 

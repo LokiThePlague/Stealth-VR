@@ -5,11 +5,14 @@ namespace __Content.Scripts.Player
 {
     public class PlayerMovement : GameComponent
     {
-        [SerializeField]
-        private Transform groundChecker;
-
+        [Header("Mask")]
         [SerializeField]
         private LayerMask groundMask;
+
+        [Space(10)]
+        [Header("References")]
+        [SerializeField]
+        private Transform groundChecker;
 
         private PlayerInput playerInput;
         private CharacterController controller;
@@ -25,7 +28,7 @@ namespace __Content.Scripts.Player
         {
             if (!IsOn)
                 return;
-            
+
             var moveInput = playerInput.actions["Move"].ReadValue<Vector2>();
 
             var moveX = moveInput.x;
