@@ -1,9 +1,10 @@
+using Unity.Netcode;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 namespace __Content.Scripts.Player
 {
-    public class PlayerMovement : GameComponent
+    public class PlayerMovement : NetworkBehaviour
     {
         [Header("Mask")]
         [SerializeField]
@@ -22,11 +23,12 @@ namespace __Content.Scripts.Player
         private Vector3 velocity;
         private float groundDistance;
 
+        private bool isOn;
         private bool isGrounded;
 
         private void Update()
         {
-            if (!IsOn)
+            if (!isOn || !IsOwner)
                 return;
 
             var moveInput = playerInput.actions["Move"].ReadValue<Vector2>();
@@ -43,7 +45,7 @@ namespace __Content.Scripts.Player
                 velocity.y = 0f;
 
             velocity.y += gravity;
-            controller.Move(velocity * (Time.deltaTime * Time.deltaTime)); // Realistic free fall
+            controller.Move(velocity * (Time.deltaTime * Time.deltaTime));
         }
 
         public void Setup(PlayerInput playerInput, CharacterController controller, float playerMoveSpeed, float gravity, float groundDistance, Transform playerBody)
@@ -54,6 +56,16 @@ namespace __Content.Scripts.Player
             this.gravity = gravity;
             this.groundDistance = groundDistance;
             this.playerBody = playerBody;
+        }
+        
+        public void On()
+        {
+            isOn = true;
+        }
+        
+        public void Off()
+        {
+            isOn = false;
         }
     }
 }

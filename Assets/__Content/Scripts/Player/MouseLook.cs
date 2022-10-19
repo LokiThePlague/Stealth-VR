@@ -1,15 +1,18 @@
+using Unity.Netcode;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 namespace __Content.Scripts.Player
 {
-    public class MouseLook : GameComponent
+    public class MouseLook : NetworkBehaviour
     {
         private PlayerInput playerInput;
         private float playerTurnSpeed;
         private float playerLookUpSpeed;
         private float xRotation;
         private Transform playerBody;
+        
+        private bool isOn;
 
         private void Start()
         {
@@ -18,14 +21,14 @@ namespace __Content.Scripts.Player
 
         private void Update()
         {
-            if (!IsOn)
+            if (!isOn || !IsOwner)
                 return;
             
             var lookAroundInput = playerInput.actions["LookAround"].ReadValue<Vector2>();
-
+            
             var mouseX = lookAroundInput.x * (playerTurnSpeed * Time.deltaTime);
             var mouseY = lookAroundInput.y * (playerLookUpSpeed * Time.deltaTime);
-
+            
             xRotation -= mouseY;
             xRotation = Mathf.Clamp(xRotation, -90f, 90f);
             
@@ -39,6 +42,16 @@ namespace __Content.Scripts.Player
             this.playerTurnSpeed = playerTurnSpeed;
             this.playerLookUpSpeed = playerLookUpSpeed;
             this.playerBody = playerBody;
+        }
+        
+        public void On()
+        {
+            isOn = true;
+        }
+        
+        public void Off()
+        {
+            isOn = false;
         }
     }
 }
