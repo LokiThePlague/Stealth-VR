@@ -684,11 +684,11 @@ PlayerSettings:
     m_VersionName: 
   apiCompatibilityLevel: 6
   activeInputHandler: 1
-  cloudProjectId: 
+  cloudProjectId: 42648e2b-58ce-40ba-be06-6d454eba97b2
   framebufferDepthMemorylessMode: 0
   qualitySettingsNames: []
-  projectName: 
-  organizationId: 
+  projectName: Stealth-VR
+  organizationId: i4mloki
   cloudEnabled: 0
   legacyClampBlendShapeWeights: 0
   playerDataPath: 
