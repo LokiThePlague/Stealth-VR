@@ -3,15 +3,13 @@ using UnityEngine.InputSystem;
 
 namespace __Content.Scripts.Player
 {
-    public class MouseLook : MonoBehaviour
+    public class MouseLook : GameComponent
     {
         private PlayerInput playerInput;
         private float playerTurnSpeed;
         private float playerLookUpSpeed;
         private float xRotation;
         private Transform playerBody;
-
-        private bool isOn;
 
         private void Start()
         {
@@ -20,7 +18,7 @@ namespace __Content.Scripts.Player
 
         private void Update()
         {
-            if (!isOn)
+            if (!IsOn)
                 return;
             
             var lookAroundInput = playerInput.actions["LookAround"].ReadValue<Vector2>();
@@ -41,16 +39,6 @@ namespace __Content.Scripts.Player
             this.playerTurnSpeed = playerTurnSpeed;
             this.playerLookUpSpeed = playerLookUpSpeed;
             this.playerBody = playerBody;
-        }
-
-        public void On()
-        {
-            isOn = true;
-        }
-        
-        public void Off()
-        {
-            isOn = false;
         }
     }
 }

@@ -3,7 +3,7 @@ using UnityEngine.InputSystem;
 
 namespace __Content.Scripts.Player
 {
-    public class PlayerMovement : MonoBehaviour
+    public class PlayerMovement : GameComponent
     {
         [SerializeField]
         private Transform groundChecker;
@@ -20,11 +20,10 @@ namespace __Content.Scripts.Player
         private float groundDistance;
 
         private bool isGrounded;
-        private bool isOn;
 
         private void Update()
         {
-            if (!isOn)
+            if (!IsOn)
                 return;
             
             var moveInput = playerInput.actions["Move"].ReadValue<Vector2>();
@@ -52,16 +51,6 @@ namespace __Content.Scripts.Player
             this.gravity = gravity;
             this.groundDistance = groundDistance;
             this.playerBody = playerBody;
-        }
-        
-        public void On()
-        {
-            isOn = true;
-        }
-        
-        public void Off()
-        {
-            isOn = false;
         }
     }
 }
