@@ -16,12 +16,12 @@ namespace __Content.Scripts.Player
 
         private void Start()
         {
-            Cursor.lockState = CursorLockMode.Locked;
+            // Cursor.lockState = CursorLockMode.Locked;
         }
 
         private void Update()
         {
-            if (!isOn || !IsOwner)
+            if (!isOn)
                 return;
             
             var lookAroundInput = playerInput.actions["LookAround"].ReadValue<Vector2>();

@@ -1,11 +1,12 @@
 using System;
 using System.Collections;
+using Unity.Netcode;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 namespace __Content.Scripts.Player
 {
-    public class PlayerController : MonoBehaviour
+    public class PlayerController : NetworkBehaviour
     {
         [Header("Movement")]
         [SerializeField]
@@ -28,6 +29,9 @@ namespace __Content.Scripts.Player
         [Space(10)]
         [Header("References")]
         [SerializeField]
+        private Camera playerCamera;
+
+        [SerializeField]
         private PlayerMovement playerMovement;
 
         [SerializeField]
@@ -36,14 +40,19 @@ namespace __Content.Scripts.Player
         private PlayerInput playerInput;
         private CharacterController controller;
 
-        private void Awake()
+        public override void OnNetworkSpawn()
         {
+            base.OnNetworkSpawn();
+
+            if (!IsOwner)
+            {
+                Destroy(playerCamera);
+                return;
+            }
+
             controller = GetComponent<CharacterController>();
             playerInput = GetComponent<PlayerInput>();
-        }
 
-        private void Start()
-        {
             playerMovement.Setup(playerInput, controller, playerMoveSpeed, gravity, groundDistance, transform);
             mouseLook.Setup(playerInput, playerTurnSpeed, playerLookUpSpeed, transform);
 

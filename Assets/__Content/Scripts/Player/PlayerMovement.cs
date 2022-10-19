@@ -28,7 +28,7 @@ namespace __Content.Scripts.Player
 
         private void Update()
         {
-            if (!isOn || !IsOwner)
+            if (!isOn)
                 return;
 
             var moveInput = playerInput.actions["Move"].ReadValue<Vector2>();
