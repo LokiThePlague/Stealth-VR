@@ -20,7 +20,7 @@ namespace __Content.Scripts.Player
         private float gravity = -9.81f;
         
         [SerializeField]
-        private float groundDistance = .4f;
+        private float groundDistance = .001f;
         
         [SerializeField]
         private PlayerMovement playerMovement;
