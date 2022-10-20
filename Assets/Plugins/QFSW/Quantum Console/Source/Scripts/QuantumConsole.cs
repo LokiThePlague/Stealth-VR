@@ -929,6 +929,7 @@ namespace QFSW.QC
 
         private void Awake()
         {
+            DontDestroyOnLoad(this);
             InitializeLogging();
         }
 
