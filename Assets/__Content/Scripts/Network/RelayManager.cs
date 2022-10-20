@@ -14,6 +14,8 @@ namespace __Content.Scripts.Network
     {
         private UnityTransport transport;
         public bool isRelayEnabled;
+        public string joinCode;
+        public bool isHost;
 
         public static RelayManager Instance;
 
@@ -51,6 +53,8 @@ namespace __Content.Scripts.Network
             };
 
             relayHostData.JoinCode = await Relay.Instance.GetJoinCodeAsync(relayHostData.AllocationID);
+            joinCode = relayHostData.JoinCode;
+            isHost = true;
 
             transport.SetRelayServerData(relayHostData.IPv4Address, relayHostData.Port, relayHostData.AllocationIDBytes, relayHostData.Key, relayHostData.ConnectionData);
 
@@ -60,6 +64,8 @@ namespace __Content.Scripts.Network
         
         public async Task<RelayJoinData> JoinRelay(string joinCode)
         {
+            this.joinCode = joinCode;
+            
             var options = new InitializationOptions()
                 .SetEnvironmentName("development");
 

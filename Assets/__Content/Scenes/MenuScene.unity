@@ -807,7 +807,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 556682791}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2023265300}
+        m_TargetAssemblyTypeName: __Content.Scripts.MainMenuManager, Assembly-CSharp
+        m_MethodName: OnJoinGameClicked
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &556682791
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1691,7 +1703,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1504764905}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2023265300}
+        m_TargetAssemblyTypeName: __Content.Scripts.MainMenuManager, Assembly-CSharp
+        m_MethodName: OnNewGameClicked
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1504764905
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1846,6 +1870,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isRelayEnabled: 0
+  joinCode: 
+  isHost: 0
 --- !u!1 &1658994727
 GameObject:
   m_ObjectHideFlags: 0
@@ -2264,7 +2290,7 @@ GameObject:
   - component: {fileID: 2023265299}
   - component: {fileID: 2023265300}
   m_Layer: 0
-  m_Name: MainMenuManager
+  m_Name: Main Menu Manager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2297,4 +2323,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3fc3c188fa884d2429b417f068c8f27a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputField: {fileID: 0}
+  inputField: {fileID: 8510085}
